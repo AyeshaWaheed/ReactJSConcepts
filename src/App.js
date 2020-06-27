@@ -1,6 +1,8 @@
 import React from 'react';
-import Header from './components/layout/Header'
-import Todos from './components/Todos'
+import Header from './components/layout/Header';
+import AddTodo from './components/AddTodo';
+import Todos from './components/Todos';
+import {v4 as uuid} from "uuid";
 
 import './App.css';
 
@@ -27,7 +29,6 @@ class App extends React.Component {
 
   //Toggle Complete
   markComplete = (id) => {
-    // console.log(id)
     this.setState({ todos: this.state.todos.map(todo => {
       if(todo.id === id) {
         todo.completed = !todo.completed
@@ -38,17 +39,28 @@ class App extends React.Component {
 
   //Delete Todo 
   delTodo = (id) => {
-    // console.log(id)
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
   }
 
+  //Add Todo
+  addTodo = (title) => {
+    // console.log(title)
+    const newTodo = {
+      id: 4,
+      title,
+      completed: false
+    }
+    this.setState({ todos: [...this.state.todos, newTodo]});
+  }
+
   render(){
-  // console.log(this.state.todos)
   return (
     <div className="App">
-       {/* <Todos todos={this.state.todos}/>           */}
-       <Header />
-       <Todos todos={this.state.todos} markComplete = {this.markComplete} delTodo = {this.delTodo}/>
+       <div className="container">
+         <Header />
+         <AddTodo addTodo={this.addTodo}/>
+         <Todos todos={this.state.todos} markComplete = {this.markComplete} delTodo = {this.delTodo}/>   
+       </div>       
     </div>
   );
   }
