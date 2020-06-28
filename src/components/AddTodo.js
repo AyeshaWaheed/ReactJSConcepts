@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class AddTodo extends Component {
     state = {
-        title : ''
+        title: ''
     }
 
     onSubmit = (e) => {
@@ -21,7 +21,7 @@ export class AddTodo extends Component {
                  name="title" 
                  style={{flex: '10', padding: '5px'}} 
                  placeholder="Add Todo ..." 
-                 value={this.props.todo} onChange={this.onChange} />
+                 value={this.state.title} onChange={this.onChange} />
                 <input 
                  type="submit" 
                  value="Submit" 
